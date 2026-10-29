@@ -10,7 +10,12 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'uploads'), {
     prefix: '/uploads/',
   });
-
+   // Enable CORS
+  app.enableCors({
+    origin: true, // Allow requesting origins; configure explicitly in production
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    credentials: true,
+  });
   // app.setGlobalPrefix('api');
   await app.listen(process.env.PORT ?? 3000);
 }
